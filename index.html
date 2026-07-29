@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finch — юридическая защита экстра-класса, доступная обычным людям</title>
+<meta name="description" content="Опишите ваш запрос в Telegram — и получите цену услуги за минуту. Разбор дела с нормой в действующей редакции и практикой, которую можно проверить. Если дойдёт до суда — подберём адвоката и передадим готовое дело.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Finch">
+<meta property="og:title" content="Finch — юридическая лаборатория">
+<meta property="og:description" content="Юридическая защита экстра-класса, доступная обычным людям. Опишите запрос в Telegram — получите цену услуги за минуту. Каждое утверждение с источником, который вы сверите сами.">
+<meta property="og:locale" content="ru_RU">
+<meta name="theme-color" content="#08080A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#08080A; --bg2:#0E0E11; --card:#141418; --line:#22222A;
+  --ink:#F2F2EC; --ink-2:#9A9A93; --ink-3:#7E7E76;
+  --a:#D6FF3F; --ok:#5BE08A;
+  --display:'Unbounded',sans-serif; --body:'Onest',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding-bottom:3.6rem;background:var(--bg);color:var(--ink);
+  font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(1.2rem,5vw,5rem)}
+section{padding:2.8rem 0;border-top:1px solid var(--line)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes scan{0%{transform:translateY(-100%)}100%{transform:translateY(2400%)}}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+
+/* шапка */
+.bar{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;padding:1.1rem clamp(1.2rem,5vw,5rem)}
+.wmwrap{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap}
+.wm{font-family:var(--display);font-weight:700;font-size:clamp(.9rem,1.2vw,1.1rem);letter-spacing:-.045em}
+.wm u{text-decoration:none;color:var(--a)}
+.desc,.bar .ph{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.bar .ph{display:none}
+.desc{padding-left:.7rem;border-left:1px solid var(--line)}
+
+/* ═══ 1. ГЛАВНЫЙ ЭКРАН ═══ */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;
+  overflow:hidden;padding:5.2rem 0 2.4rem;border-top:0}
+.hero .grid{position:absolute;inset:0;opacity:.15;
+  background-image:linear-gradient(#2A2A32 1px,transparent 1px),linear-gradient(90deg,#2A2A32 1px,transparent 1px);
+  background-size:62px 62px;mask-image:radial-gradient(85% 65% at 25% 45%,#000,transparent 78%)}
+.hero .scan{position:absolute;left:0;right:0;top:0;height:2px;opacity:.35;
+  background:linear-gradient(90deg,transparent,var(--a),transparent);animation:scan 8s linear infinite}
+.hero .in{position:relative;z-index:2;width:100%}
+.kick{font-family:var(--mono);font-size:clamp(8.5px,.95vw,10.5px);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--a);display:flex;align-items:center;gap:.85rem;animation:up .7s .04s both}
+.kick::after{content:"";height:1px;flex:1;max-width:160px;background:linear-gradient(90deg,var(--a),transparent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.75rem,5.6vw,4.8rem);line-height:.98;
+  letter-spacing:-.05em;margin:1rem 0 0;max-width:22ch;animation:up .8s .1s both}
+h1 em{font-style:normal;color:var(--a)}
+.promise{font-size:clamp(1rem,1.5vw,1.42rem);line-height:1.46;color:var(--ink);max-width:50ch;
+  margin:1.1rem 0 0;animation:up .8s .18s both;font-weight:500}
+.promise b{color:var(--a);font-weight:700}
+.cta{margin-top:1.4rem;animation:up .8s .26s both}
+.b1{display:inline-block;text-decoration:none;background:var(--a);color:#08080A;font-family:var(--body);
+  font-weight:800;font-size:clamp(1rem,1.3vw,1.15rem);padding:1.05em 2em;border:0;cursor:pointer;
+  transition:.16s;letter-spacing:-.015em;text-align:center}
+.b1:hover{background:#fff}
+.cta .b1{width:100%}
+.cta .under{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:.8rem;font-family:var(--mono);
+  font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.cta .under .tick{color:var(--ok);font-style:normal}
+.riskline{font-size:.88rem;color:var(--ink-2);margin:1rem 0 0;display:flex;align-items:flex-start;
+  gap:.5rem;animation:up .8s .32s both}
+.riskline .tick{color:var(--ok);font-style:normal;font-weight:700}
+.proof{display:flex;flex-direction:column;gap:.8rem;margin-top:1.6rem;padding-top:1.1rem;
+  border-top:1px solid var(--line);animation:up .8s .4s both}
+.proof div{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.proof b{display:block;font-family:var(--display);font-weight:700;font-size:clamp(1rem,1.9vw,1.6rem);
+  color:var(--ink);letter-spacing:-.04em;margin-bottom:.3em}
+
+/* общие заголовки секций */
+.cap{font-family:var(--mono);font-size:clamp(8.5px,.95vw,10.5px);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--a);margin-bottom:.6rem;display:block}
+.h2{font-family:var(--display);font-weight:700;font-size:clamp(1.35rem,3.4vw,2.7rem);line-height:1.05;
+  letter-spacing:-.045em;margin:0;max-width:22ch}
+.h2 em{font-style:normal;color:var(--a)}
+.lede{font-size:clamp(.92rem,1.15vw,1.08rem);color:var(--ink-2);max-width:62ch;margin:.9rem 0 0}
+.lede b{color:var(--ink);font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr;gap:1.4rem;margin-top:1.6rem;align-items:start}
+
+/* ═══ 2. ОТКУДА МЫ ═══ */
+.origin{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1.6rem}
+.obox{border:1px solid var(--line);background:var(--card);padding:1.15rem}
+.obox .n{font-family:var(--mono);font-size:10px;color:var(--a);letter-spacing:.13em;display:block;margin-bottom:.5rem}
+.obox h3{margin:0;font-weight:700;font-size:clamp(1rem,1.25vw,1.2rem);letter-spacing:-.025em}
+.obox p{margin:.55rem 0 0;font-size:clamp(.86rem,1.02vw,.96rem);line-height:1.5;color:var(--ink-2)}
+.obox p b{color:var(--ink);font-weight:600}
+.obox.us{background:#121608}
+.obox.us h3{color:var(--a)}
+
+/* ═══ 3. КАК ПРОИСХОДИТ РАБОТА ═══ */
+.steps{border:1px solid var(--line);background:var(--card)}
+.step{padding:1.15rem}
+.step + .step{border-top:1px solid var(--line)}
+.step.us{background:#121608}
+.step .hd{display:flex;align-items:baseline;gap:.65rem;flex-wrap:wrap}
+.step h3{margin:0;font-weight:700;font-size:clamp(1rem,1.25vw,1.2rem);letter-spacing:-.025em}
+.step.us h3{color:var(--a)}
+.step .tag{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.step p{margin:.6rem 0 0;font-size:clamp(.86rem,1.02vw,.96rem);line-height:1.5;color:var(--ink-2)}
+.step p b{color:var(--ink);font-weight:600}
+.stepsft{padding:.9rem 1.15rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);line-height:1.8}
+.stepsft .tick{color:var(--ok);font-style:normal}
+
+/* чат */
+.chatwrap{border:1px solid var(--line);background:var(--bg2)}
+.chathd{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 1rem;
+  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3)}
+.chathd .live{color:var(--ok);display:flex;align-items:center;gap:.4rem}
+.chathd .live i{width:6px;height:6px;border-radius:50%;background:var(--ok);display:inline-block;animation:blink 1.8s infinite}
+.chat{padding:1rem;display:flex;flex-direction:column;gap:.6rem;min-height:26rem}
+.msg{max-width:88%;padding:.75rem .9rem;font-size:.9rem;line-height:1.45;opacity:0}
+.msg.on{animation:pop .38s cubic-bezier(.2,.7,.3,1) both}
+.msg.me{align-self:flex-end;background:var(--a);color:#08080A;font-weight:500}
+.msg.it{align-self:flex-start;background:var(--card);border:1px solid var(--line);color:var(--ink-2)}
+.msg.it b{color:var(--ink);font-weight:600}
+.msg.src{align-self:flex-start;background:transparent;border:1px dashed #2E3A18;color:var(--a);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;line-height:1.7}
+.typing{align-self:flex-start;display:flex;gap:.28rem;padding:.85rem .9rem;background:var(--card);
+  border:1px solid var(--line);opacity:0}
+.typing.on{opacity:1}
+.typing i{width:5px;height:5px;border-radius:50%;background:var(--ink-3);animation:blink 1.3s infinite}
+.typing i:nth-child(2){animation-delay:.18s}
+.typing i:nth-child(3){animation-delay:.36s}
+.chatft{padding:.75rem 1rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:9px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-align:center}
+
+.close{display:flex;flex-direction:column;align-items:flex-start;gap:1.1rem;margin-top:1.6rem;
+  padding-top:1.2rem;border-top:1px solid var(--line)}
+.close p{margin:0;font-size:.9rem;color:var(--ink-2);max-width:56ch}
+.close p b{color:var(--ink)}
+
+/* футер: юридическая информация */
+footer{padding:1.8rem 0 2.2rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:9px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+footer .row{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
+footer .legal{margin-top:1rem;display:flex;flex-direction:column;gap:.35rem;letter-spacing:.09em;
+  text-transform:none;line-height:1.7}
+footer .legal span{display:block}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;display:block;background:var(--a);color:#08080A;
+  text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:1.05em 1rem;
+  letter-spacing:-.015em;box-shadow:0 -10px 30px rgba(0,0,0,.55)}
+
+@media (min-width:640px){
+  .proof{flex-direction:row;flex-wrap:wrap;gap:2rem}
+  .cta .b1{width:auto}
+  .msg{max-width:78%}
+  .origin{grid-template-columns:1fr 1fr 1fr}
+}
+@media (min-width:940px){
+  body{padding-bottom:0}
+  .sticky{display:none}
+  .bar .ph{display:block}
+  section{padding:clamp(3.4rem,9vh,6rem) 0}
+  .hero{padding:clamp(5.5rem,12vh,8rem) 0 clamp(2rem,5vh,4rem)}
+  .grid2{grid-template-columns:1fr 1fr;gap:clamp(1.6rem,3.5vw,3rem);margin-top:2rem}
+  .close{flex-direction:row;align-items:center;justify-content:space-between;gap:1.4rem;flex-wrap:wrap}
+  .chat{min-height:29rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .msg{opacity:1}
+  .typing{display:none}
+}
+</style>
+</head>
+<body id="top">
+
+<div class="bar">
+  <div class="wmwrap">
+    <div class="wm">FINCH<u>.</u></div>
+    <div class="desc">Юридическая лаборатория</div>
+  </div>
+  <div class="ph">Екатеринбург · работаем по всей России</div>
+</div>
+
+<!-- ═══ 1. ГЛАВНЫЙ ЭКРАН ═══ -->
+<section class="hero">
+  <div class="grid"></div><div class="scan"></div>
+  <div class="wrap in">
+    <div class="kick">Разбор за минуты · каждое слово можно проверить</div>
+    <h1>Юридическая защита <em>экстра-класса</em>, доступная <em>обычным людям</em>.</h1>
+    <p class="promise">Опишите ваш запрос в Telegram — и <b>получите цену услуги за минуту</b>. Своими словами, как есть. Без звонков, без «оставьте телефон, мы перезвоним» и без «приходите на консультацию, там обсудим».</p>
+
+    <div class="cta">
+      <a class="b1" data-tg href="#">Получить первый разбор в Telegram</a>
+      <div class="under">
+        <span><i class="tick">✓</i> Первый разбор бесплатно</span>
+        <span><i class="tick">✓</i> Без звонков</span>
+        <span><i class="tick">✓</i> Скажем сразу, если браться не стоит</span>
+      </div>
+    </div>
+
+    <p class="riskline"><i class="tick">✓</i> Цена считается под ваше дело, а не берётся из прайса. Не увидите пользы — вернём деньги.</p>
+
+    <div class="proof">
+      <div><b>норма с редакцией</b>не пересказ, а цитата</div>
+      <div><b>дело с номером</b>найдёте в картотеке сами</div>
+      <div><b>подпись адвоката</b>подберём под ваше дело, если дойдёт до суда</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2. ОТКУДА МЫ ═══ -->
+<section id="origin">
+  <div class="wrap">
+    <span class="cap">Откуда мы</span>
+    <h2 class="h2">Мы пришли <em>с другого рынка</em>.</h2>
+    <p class="lede">Мы разрабатываем ИИ-агентов для крупных компаний: наши решения работают в контурах бизнесов с миллиардной выручкой — помогают администрировать учёт и документооборот. А потом мы посмотрели на рынок юридических услуг для обычных людей — и не поверили, что так ещё бывает.</p>
+
+    <div class="origin">
+      <div class="obox">
+        <span class="n">01</span>
+        <h3>Там девяностые</h3>
+        <p>Консультация через неделю. Цена после консультации. Что внутри — непонятно.</p>
+      </div>
+      <div class="obox">
+        <span class="n">02</span>
+        <h3>А работа уже автоматизирована</h3>
+        <p>Самую дорогую часть работы юриста — подготовку: норма, практика, проверка второй стороны — <b>наши агенты делают за минуты. Каждый день. Внутри корпораций.</b></p>
+      </div>
+      <div class="obox us">
+        <span class="n">03</span>
+        <h3>Решение заняло 15 минут</h3>
+        <p>Взять один из наших продуктов и выложить в общий доступ — <b>практически бесплатно относительно того, сколько это стоит корпорациям.</b> Первый оплаченный разбор пришёл через час после запуска.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3. КАК ПРОИСХОДИТ РАБОТА ═══ -->
+<section id="how">
+  <div class="wrap">
+    <span class="cap">Как происходит работа с нами</span>
+    <h2 class="h2">Вы пишете как есть. <em>Дальше работаем мы.</em></h2>
+    <p class="lede">У юристов процесс — тайна за семью печатями: «приходите, разберёмся». У нас — вот он, целиком. Finch — юридическая лаборатория: как лаборатория делает анализы, а лечит врач. Мы готовим дело, а если спор доходит до суда — в него идёт живой адвокат.</p>
+
+    <div class="grid2">
+      <div class="steps">
+        <div class="step us">
+          <div class="hd"><h3>01 · Собираем информацию</h3><span class="tag">Реестры · нормы · практика</span></div>
+          <p>Ваши документы и факты. Проверка второй стороны по государственным реестрам. Норма в действующей редакции и живая практика с номерами дел. <b>За каждым утверждением — источник, который вы сверите сами.</b></p>
+        </div>
+        <div class="step">
+          <div class="hd"><h3>02 · Оформляем её в позицию</h3><span class="tag">Главный документ дела</span></div>
+          <p>Что у вас произошло <b>юридически</b>, а не как это выглядит. Какая линия, какие шаги, какие риски и <b>что не сработает</b>. Всё остальное строится на позиции.</p>
+        </div>
+        <div class="step">
+          <div class="hd"><h3>03 · Делаем документы. Поэтапно</h3><span class="tag">Сначала — без суда</span></div>
+          <p>Сначала претензия — многие споры заканчиваются на ней, без суда, и это хороший исход. Не сработала — готовим судебные документы: иск, отзыв, ходатайства. <b>Каждый этап отдельно: вы платите только за то, что нужно вашему делу.</b></p>
+        </div>
+        <div class="step">
+          <div class="hd"><h3>04 · Если доходит до суда — адвоката подбираем мы</h3><span class="tag">Не «вот вам список»</span></div>
+          <p>Смотрим на <b>совпадение опыта адвоката с категорией вашего дела</b> и на локацию — суд ваш, город ваш. Он получает готовую позицию и собранное дело — и идёт в суд под своим статусом и своей ответственностью.</p>
+        </div>
+        <div class="stepsft"><i class="tick">✓</i> На каждом шаге вы знаете цену и срок до оплаты &nbsp;·&nbsp; <i class="tick">✓</i> На любом шаге можно остановиться</div>
+      </div>
+
+      <div class="chatwrap">
+        <div class="chathd">
+          <span>Так выглядит первый разбор</span>
+          <span class="live"><i></i>вживую</span>
+        </div>
+        <div class="chat" id="chat">
+          <div class="msg me" data-d="300">Есть ИП на 800к, на машину разбитую наложили запрет рег. действий. Хотел её продать, чтоб были деньги в долг закинуть. Что можно сделать, чтоб продать машину?</div>
+          <div class="typing" data-d="1400" data-t="1"><i></i><i></i><i></i></div>
+          <div class="msg it" data-d="3000"><b>Сразу главное: у вас не арест, а запрет регистрационных действий.</b> Это разные вещи. Машина остаётся у вас, договор купли-продажи заключить можно — не пройдёт только перерегистрация в ГИБДД.</div>
+          <div class="msg it" data-d="5200">Значит задача не «обойти запрет», а снять его в связке со сделкой. <b>Рабочий ход:</b> покупатель вносит часть цены прямо на депозит приставов за вас. Пристав оканчивает производство и снимает запрет — дальше договор и ГИБДД.</div>
+          <div class="msg it" data-d="7400"><b>Что не сработает:</b> продать в обход пристава. Самостоятельная реализация разрешена только до установленного порога стоимости — ваш случай в него не попадает.</div>
+          <div class="msg src" data-d="9000">Опора: нормы закона об исполнительном производстве и ГК — дословно, с действующей редакцией · судебные дела с номерами</div>
+          <div class="msg it" data-d="10600"><b>Один вопрос, от которого зависит план:</b> назовите ИНН. По нему подниму все производства. Если их несколько и в сумме больше стоимости машины — снятие запрета по одному ничего не даст. После этого назову цену и срок.</div>
+        </div>
+        <div class="chatft">Реальный запрос · пример разбора</div>
+      </div>
+    </div>
+
+    <div class="close">
+      <p><b>Вы отвечаете только за решение</b> — идти в спор или нет. Но принимаете его, зная цену, срок, риски и то, что не сработает. А не вслепую.</p>
+      <a class="b1" data-tg href="#">Описать своё дело в Telegram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <span>FINCH · Юридическая лаборатория</span>
+      <span>Екатеринбург · работаем по всей России</span>
+    </div>
+    <!-- Юридическая информация. Адрес и e-mail добавить, когда пришлют реквизиты (ждём от Петра) -->
+    <div class="legal">
+      <span>Индивидуальный предприниматель Полежаева Мария Николаевна · ИНН 861902828740 · ОГРНИП 323665800045219</span>
+      <span>Дата государственной регистрации: 06.03.2023 · Межрайонная ИФНС России № 25 по Свердловской области</span>
+      <span>Адрес: — · E-mail: — <!-- TODO: заполнить из реквизитов --></span>
+      <span>Информация на сайте не является публичной офертой (ст. 437 ГК РФ). Стоимость услуг определяется индивидуально по конкретному делу и сообщается до оплаты.</span>
+      <span>Обращаясь к нам в Telegram, вы соглашаетесь на обработку персональных данных, необходимых для ответа на ваш запрос (152-ФЗ).</span>
+    </div>
+  </div>
+</footer>
+
+<a class="sticky" data-tg href="#">Получить первый разбор в Telegram</a>
+
+<script>
+// ═══ Точка входа: ссылка на Telegram. ЗАМЕНИТЬ перед публикацией — адрес канала/бота ещё не выбран. ═══
+var TG_LINK = '#'; // например: 'https://t.me/finch_lab'
+[].forEach.call(document.querySelectorAll('a[data-tg]'), function(a){ a.href = TG_LINK; });
+
+(function(){
+  var chat = document.getElementById('chat');
+  if(!chat) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    [].forEach.call(chat.children, function(el){ el.style.opacity = 1; });
+    return;
+  }
+  var items = [].slice.call(chat.children);
+  var END = 13500, timers = [];
+
+  function play(){
+    timers.forEach(clearTimeout); timers = [];
+    items.forEach(function(el){ el.classList.remove('on'); });
+    items.forEach(function(el){
+      var d = +el.dataset.d || 0;
+      timers.push(setTimeout(function(){ el.classList.add('on'); }, d));
+      if(el.dataset.t){ // индикатор набора гаснет, когда приходит ответ
+        timers.push(setTimeout(function(){ el.classList.remove('on'); }, d + 1500));
+      }
+    });
+    timers.push(setTimeout(play, END));
+  }
+
+  // стартуем, когда чат попал на экран, и не крутим вхолостую за кадром
+  if('IntersectionObserver' in window){
+    var seen = false;
+    new IntersectionObserver(function(e){
+      if(e[0].isIntersecting && !seen){ seen = true; play(); }
+    }, {threshold:.25}).observe(chat);
+  } else { play(); }
+})();
+</script>
+</body>
+</html>
