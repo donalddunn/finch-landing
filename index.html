@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Finch — юридическая защита экстра-класса, доступная обычным людям</title>
-<meta name="description" content="Опишите ваш запрос в Telegram — и получите цену услуги за минуту. Разбор дела с нормой в действующей редакции и практикой, которую можно проверить. Если дойдёт до суда — подберём юриста и передадим готовое дело.">
+<title>Finch — юридический бот в Telegram: разбор ситуации и готовый документ</title>
+<meta name="description" content="Опишите ситуацию своими словами в Telegram — Финч разберёт её по закону, даст план действий и подготовит готовый документ: претензию, заявление, ответ. Файлом, а не словами. Каждое утверждение — с источником, который можно проверить. Сейчас бесплатно.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Finch">
-<meta property="og:title" content="Finch — юридическая лаборатория">
-<meta property="og:description" content="Юридическая защита экстра-класса, доступная обычным людям. Опишите запрос в Telegram — получите цену услуги за минуту. Каждое утверждение с источником, который вы сверите сами.">
+<meta property="og:title" content="Finch — юридический бот: не совет, а готовый документ">
+<meta property="og:description" content="Ремонт «на словах», взнос в садике, списанная страховка, счёт от УК — опишите как есть. Финч даст план действий и готовый документ файлом. Сейчас бесплатно.">
 <meta property="og:locale" content="ru_RU">
 <!-- Абсолютные адреса: при переезде на домен НейроПроекта заменить хост в og:url и og:image -->
 <meta property="og:url" content="https://finch.neuroproject.tech/">
@@ -16,10 +16,10 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Finch — юридическая защита экстра-класса, доступная обычным людям">
+<meta property="og:image:alt" content="Finch — юридический бот в Telegram: план действий и готовый документ">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Finch — юридическая лаборатория">
-<meta name="twitter:description" content="Юридическая защита экстра-класса, доступная обычным людям. Опишите запрос в Telegram — получите цену услуги за минуту.">
+<meta name="twitter:title" content="Finch — юридический бот: не совет, а готовый документ">
+<meta name="twitter:description" content="Опишите ситуацию в Telegram — Финч разберёт её по закону и подготовит готовый документ. Сейчас бесплатно.">
 <meta name="twitter:image" content="https://finch.neuroproject.tech/og-image.png">
 <link rel="canonical" href="https://finch.neuroproject.tech/">
 <meta name="theme-color" content="#08080A">
@@ -81,9 +81,6 @@ h1 em{font-style:normal;color:var(--a)}
 .cta .under{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:.8rem;font-family:var(--mono);
   font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .cta .under .tick{color:var(--ok);font-style:normal}
-.riskline{font-size:.88rem;color:var(--ink-2);margin:1rem 0 0;display:flex;align-items:flex-start;
-  gap:.5rem;animation:up .8s .32s both}
-.riskline .tick{color:var(--ok);font-style:normal;font-weight:700}
 .proof{display:flex;flex-direction:column;gap:.8rem;margin-top:1.6rem;padding-top:1.1rem;
   border-top:1px solid var(--line);animation:up .8s .4s both}
 .proof div{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
@@ -109,6 +106,7 @@ h1 em{font-style:normal;color:var(--a)}
 .obox p b{color:var(--ink);font-weight:600}
 .obox.us{background:#121608}
 .obox.us h3{color:var(--a)}
+.obox.wide{grid-column:1/-1}
 
 /* ═══ 3. КАК ПРОИСХОДИТ РАБОТА ═══ */
 .steps{border:1px solid var(--line);background:var(--card)}
@@ -158,9 +156,6 @@ h1 em{font-style:normal;color:var(--a)}
 footer{padding:1.8rem 0 2.2rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:9px;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
 footer .row{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
-footer .legal{margin-top:1rem;display:flex;flex-direction:column;gap:.35rem;letter-spacing:.09em;
-  text-transform:none;line-height:1.7}
-footer .legal span{display:block}
 
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;display:block;background:var(--a);color:#08080A;
   text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:1.05em 1rem;
@@ -191,6 +186,21 @@ footer .legal span{display:block}
 </head>
 <body id="top">
 
+<!-- Яндекс.Метрика. Чтобы включить: заменить null на номер счётчика (var YM_ID = 12345678;)
+     и YM_COUNTER_ID в noscript-пикселе. Цель для Директа: JavaScript-событие «tg_click». -->
+<script>
+var YM_ID = null;
+if (YM_ID) {
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();
+  for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+  ym(YM_ID, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true});
+}
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/YM_COUNTER_ID" style="position:absolute;left:-9999px" alt=""></div></noscript>
+
 <div class="bar">
   <div class="wmwrap">
     <div class="wm">FINCH<u>.</u></div>
@@ -203,51 +213,69 @@ footer .legal span{display:block}
 <section class="hero">
   <div class="grid"></div><div class="scan"></div>
   <div class="wrap in">
-    <div class="kick">Разбор за минуты · каждое слово можно проверить</div>
-    <h1>Юридическая защита <em>экстра-класса</em>, доступная <em>обычным людям</em>.</h1>
-    <p class="promise">Опишите ваш запрос в Telegram — и <b>получите цену услуги за минуту</b>. Своими словами, как есть. Без звонков, без «оставьте телефон, мы перезвоним» и без «приходите на консультацию, там обсудим».</p>
+    <div class="kick">Юридический бот в Telegram · каждое слово можно проверить</div>
+    <h1>Разберём вашу ситуацию и подготовим документ. <em>За минуты.</em></h1>
+    <p class="promise">Опишите, что случилось, своими словами в Telegram. Финч разберёт ситуацию, скажет, что делать и что не сработает, — и подготовит <b>готовый документ: вам останется подписать и отправить</b>. Без звонков, без «оставьте телефон, мы перезвоним».</p>
 
     <div class="cta">
-      <a class="b1" data-tg href="https://t.me/finch_lab">Получить первый разбор в Telegram</a>
+      <a class="b1" data-tg href="https://t.me/finch_lab_bot?start=site">Разобрать мою ситуацию в Telegram</a>
       <div class="under">
-        <span><i class="tick">✓</i> Первый разбор бесплатно</span>
+        <span><i class="tick">✓</i> Сейчас бесплатно</span>
         <span><i class="tick">✓</i> Без звонков</span>
-        <span><i class="tick">✓</i> Скажем сразу, если браться не стоит</span>
+        <span><i class="tick">✓</i> Скажем сразу, если дело того не стоит</span>
       </div>
     </div>
-
-    <p class="riskline"><i class="tick">✓</i> Цена считается под ваше дело, а не берётся из прайса. Не увидите пользы — вернём деньги.</p>
 
     <div class="proof">
       <div><b>норма с редакцией</b>не пересказ, а цитата</div>
       <div><b>дело с номером</b>найдёте в картотеке сами</div>
-      <div><b>подпись юриста</b>подберём под ваше дело, если дойдёт до суда</div>
+      <div><b>документ файлом</b>остаётся подписать и отправить</div>
     </div>
   </div>
 </section>
 
-<!-- ═══ 2. ОТКУДА МЫ ═══ -->
-<section id="origin">
+<!-- ═══ 2. КОГДА ЭТО НУЖНО ═══ -->
+<section id="cases">
   <div class="wrap">
-    <span class="cap">Откуда мы</span>
-    <h2 class="h2">Мы пришли <em>с другого рынка</em>.</h2>
-    <p class="lede">Мы разрабатываем ИИ-агентов для крупных компаний: наши решения работают в контурах бизнесов с миллиардной выручкой — помогают администрировать учёт и документооборот. А потом мы посмотрели на рынок юридических услуг для обычных людей — и не поверили, что так ещё бывает.</p>
+    <span class="cap">Когда это нужно</span>
+    <h2 class="h2">Ситуации, с которыми <em>к юристу обычно не идут</em>.</h2>
+    <p class="lede">Споры «не на миллион»: идти к юристу кажется дорого и долго, а спустить на тормозах — обидно. Именно такие Финч разбирает лучше всего — <b>что говорит закон, какие шансы и какой документ отправить</b>.</p>
 
     <div class="origin">
       <div class="obox">
         <span class="n">01</span>
-        <h3>Там девяностые</h3>
-        <p>Консультация через неделю. Цена после консультации. Что внутри — непонятно.</p>
+        <h3>Ремонт «на словах»</h3>
+        <p>Нанимали бригаду, договорились устно — работы встали, аванс уехал. Финч покажет, чем подтвердить договорённость без договора, и подготовит <b>претензию подрядчику</b>.</p>
       </div>
       <div class="obox">
         <span class="n">02</span>
-        <h3>А работа уже автоматизирована</h3>
-        <p>Самую дорогую часть работы юриста — подготовку: норма, практика, проверка второй стороны — <b>наши агенты делают за минуты. Каждый день. Внутри корпораций.</b></p>
+        <h3>«Добровольный взнос» в садике</h3>
+        <p>Объявили сбор «на нужды группы». Финч разберёт, что здесь законно, а что нет, и соберёт <b>заявление заведующей</b> — или обращение в департамент образования.</p>
       </div>
-      <div class="obox us">
+      <div class="obox">
         <span class="n">03</span>
-        <h3>Решение заняло 15 минут</h3>
-        <p>Взять один из наших продуктов и выложить в общий доступ — <b>практически бесплатно относительно того, сколько это стоит корпорациям.</b> Первый оплаченный разбор пришёл через час после запуска.</p>
+        <h3>Доставка с трещиной</h3>
+        <p>Приняли шкаф — а на дверце трещина. Подписанный при получении акт ещё не приговор: Финч подскажет сроки и подготовит <b>претензию продавцу</b>.</p>
+      </div>
+      <div class="obox">
+        <span class="n">04</span>
+        <h3>Спор с эвакуатором</h3>
+        <p>Машину увезли или поцарапали при погрузке. Финч проверит, была ли эвакуация законной, и подготовит <b>жалобу</b> или заявление о возврате уплаченного.</p>
+      </div>
+      <div class="obox">
+        <span class="n">05</span>
+        <h3>Банк списал страховку</h3>
+        <p>Списание за страховку, которую вы не помните, чтобы подключали. Финч найдёт основание для отказа и соберёт <b>заявление на возврат</b>.</p>
+      </div>
+      <div class="obox">
+        <span class="n">06</span>
+        <h3>Непонятное в квитанции УК</h3>
+        <p>Строки, которых раньше не было. Финч объяснит, что управляющая компания обязана расшифровать, и подготовит <b>заявление на перерасчёт</b>.</p>
+      </div>
+      <div class="obox us wide">
+        <span class="n">Реальный вопрос из бота</span>
+        <h3>Няня работает без договора — положен ли ей отпуск?</h3>
+        <p>Финч разобрал, чем рискуют обе стороны без оформления, и предложил, как закрепить договорённость документом — <b>не подставив ни няню, ни семью</b>.</p>
       </div>
     </div>
   </div>
@@ -256,34 +284,30 @@ footer .legal span{display:block}
 <!-- ═══ 3. КАК ПРОИСХОДИТ РАБОТА ═══ -->
 <section id="how">
   <div class="wrap">
-    <span class="cap">Как происходит работа с нами</span>
-    <h2 class="h2">Вы пишете как есть. <em>Дальше работаем мы.</em></h2>
-    <p class="lede">У юристов процесс — тайна за семью печатями: «приходите, разберёмся». У нас — вот он, целиком. Finch — юридическая лаборатория: как лаборатория делает анализы, а лечит врач. Мы готовим дело, а если спор доходит до суда — в него идёт живой юрист.</p>
+    <span class="cap">Как это работает</span>
+    <h2 class="h2">Вы пишете как есть. <em>Дальше работает Финч.</em></h2>
+    <p class="lede">Без анкет, звонков и визитов. От первого сообщения до готового файла — <b>один чат в Telegram</b>.</p>
 
     <div class="grid2">
       <div class="steps">
         <div class="step us">
-          <div class="hd"><h3>01 · Собираем информацию</h3><span class="tag">Реестры · нормы · практика</span></div>
-          <p>Ваши документы и факты. Проверка второй стороны по государственным реестрам. Норма в действующей редакции и живая практика с номерами дел. <b>За каждым утверждением — источник, который вы сверите сами.</b></p>
+          <div class="hd"><h3>01 · Напишите как есть</h3><span class="tag">Своими словами</span></div>
+          <p>Расскажите так, как рассказали бы знакомому. Документы и фото можно приложить прямо в чат — но можно и без них.</p>
         </div>
         <div class="step">
-          <div class="hd"><h3>02 · Оформляем её в позицию</h3><span class="tag">Главный документ дела</span></div>
-          <p>Что у вас произошло <b>юридически</b>, а не как это выглядит. Какая линия, какие шаги, какие риски и <b>что не сработает</b>. Всё остальное строится на позиции.</p>
+          <div class="hd"><h3>02 · Финч уточнит пару вопросов</h3><span class="tag">2–3 вопроса, не анкета</span></div>
+          <p>Спросит только то, от чего зависит план: даты, суммы, что подписывали. <b>Ничего лишнего.</b></p>
         </div>
         <div class="step">
-          <div class="hd"><h3>03 · Делаем документы. Поэтапно</h3><span class="tag">Сначала — без суда</span></div>
-          <p>Сначала претензия — многие споры заканчиваются на ней, без суда, и это хороший исход. Не сработала — готовим судебные документы: иск, отзыв, ходатайства. <b>Каждый этап отдельно: вы платите только за то, что нужно вашему делу.</b></p>
+          <div class="hd"><h3>03 · Получите разбор и готовый документ</h3><span class="tag">Файлом, а не словами</span></div>
+          <p>Что произошло <b>юридически</b>, какие шаги и <b>что не сработает</b>. И документ — претензия, заявление, ответ, — который остаётся подписать и отправить. За каждым утверждением источник: норма в действующей редакции, дело с номером.</p>
         </div>
-        <div class="step">
-          <div class="hd"><h3>04 · Если доходит до суда — юриста подбираем мы</h3><span class="tag">Не «вот вам список»</span></div>
-          <p>Смотрим на <b>совпадение опыта юриста с категорией вашего дела</b> и на локацию — суд ваш, город ваш. Он получает готовую позицию и собранное дело — и идёт в суд от своего имени и под своей ответственностью.</p>
-        </div>
-        <div class="stepsft"><i class="tick">✓</i> На каждом шаге вы знаете цену и срок до оплаты &nbsp;·&nbsp; <i class="tick">✓</i> На любом шаге можно остановиться</div>
+        <div class="stepsft"><i class="tick">✓</i> Каждое утверждение — с источником &nbsp;·&nbsp; <i class="tick">✓</i> Скажем сразу, если браться не стоит</div>
       </div>
 
       <div class="chatwrap">
         <div class="chathd">
-          <span>Так выглядит первый разбор</span>
+          <span>Так выглядит разбор</span>
           <span class="live"><i></i>вживую</span>
         </div>
         <div class="chat" id="chat">
@@ -293,15 +317,15 @@ footer .legal span{display:block}
           <div class="msg it" data-d="5200">Значит задача не «обойти запрет», а снять его в связке со сделкой. <b>Рабочий ход:</b> покупатель вносит часть цены прямо на депозит приставов за вас. Пристав оканчивает производство и снимает запрет — дальше договор и ГИБДД.</div>
           <div class="msg it" data-d="7400"><b>Что не сработает:</b> продать в обход пристава. Самостоятельная реализация разрешена только до установленного порога стоимости — ваш случай в него не попадает.</div>
           <div class="msg src" data-d="9000">Опора: нормы закона об исполнительном производстве и ГК — дословно, с действующей редакцией · судебные дела с номерами</div>
-          <div class="msg it" data-d="10600"><b>Один вопрос, от которого зависит план:</b> назовите ИНН. По нему подниму все производства. Если их несколько и в сумме больше стоимости машины — снятие запрета по одному ничего не даст. После этого назову цену и срок.</div>
+          <div class="msg it" data-d="10600"><b>Один вопрос, от которого зависит план:</b> назовите ИНН. По нему подниму все производства. Если их несколько и в сумме больше стоимости машины — снятие запрета по одному ничего не даст. После этого соберу план и подготовлю документы.</div>
         </div>
         <div class="chatft">Реальный запрос · пример разбора</div>
       </div>
     </div>
 
     <div class="close">
-      <p><b>Вы отвечаете только за решение</b> — идти в спор или нет. Но принимаете его, зная цену, срок, риски и то, что не сработает. А не вслепую.</p>
-      <a class="b1" data-tg href="https://t.me/finch_lab">Описать своё дело в Telegram</a>
+      <p><b>Вы отвечаете только за решение</b> — идти в спор или нет. Но принимаете его, зная шаги, риски и то, что не сработает. А не вслепую.</p>
+      <a class="b1" data-tg href="https://t.me/finch_lab_bot?start=site">Описать своё дело в Telegram</a>
     </div>
   </div>
 </section>
@@ -312,24 +336,22 @@ footer .legal span{display:block}
       <span>FINCH · Юридическая лаборатория</span>
       <span>Екатеринбург · работаем по всей России</span>
     </div>
-    <!-- Юридическая информация. Адрес и e-mail добавить, когда пришлют реквизиты (ждём от Петра) -->
-    <div class="legal">
-      <span>Индивидуальный предприниматель Полежаева Мария Николаевна · ИНН 861902828740 · ОГРНИП 323665800045219</span>
-      <span>Дата государственной регистрации: 06.03.2023 · Межрайонная ИФНС России № 25 по Свердловской области</span>
-      <span>Адрес: — · E-mail: — <!-- TODO: заполнить из реквизитов --></span>
-      <span>Информация на сайте не является публичной офертой (ст. 437 ГК РФ). Стоимость услуг определяется индивидуально по конкретному делу и сообщается до оплаты.</span>
-      <span>Обращаясь к нам в Telegram, вы соглашаетесь на обработку персональных данных, необходимых для ответа на ваш запрос (152-ФЗ).</span>
-    </div>
   </div>
 </footer>
 
-<a class="sticky" data-tg href="https://t.me/finch_lab">Получить первый разбор в Telegram</a>
+<a class="sticky" data-tg href="https://t.me/finch_lab_bot?start=site">Разобрать мою ситуацию в Telegram</a>
 
 <script>
-// ═══ Точка входа: ссылка на Telegram. Канал «FINCH. Юридическая лаборатория». ═══
+// ═══ Точка входа: бот @finch_lab_bot. Параметр start=site помечает переходы с сайта
+// (реклама Директа ведёт на этот же сайт, поэтому здесь всегда site). ═══
 // Тот же адрес продублирован в href каждой кнопки — чтобы работало и без JS.
-var TG_LINK = 'https://t.me/finch_lab';
-[].forEach.call(document.querySelectorAll('a[data-tg]'), function(a){ a.href = TG_LINK; });
+var TG_LINK = 'https://t.me/finch_lab_bot?start=site';
+[].forEach.call(document.querySelectorAll('a[data-tg]'), function(a){
+  a.href = TG_LINK;
+  a.addEventListener('click', function(){ // конверсия для Директа; sendBeacon переживает уход со страницы
+    if (window.YM_ID && typeof ym === 'function') ym(window.YM_ID, 'reachGoal', 'tg_click');
+  });
+});
 
 (function(){
   var chat = document.getElementById('chat');
