@@ -97,7 +97,7 @@ h1 em{font-style:normal;color:var(--a)}
 .lede b{color:var(--ink);font-weight:600}
 .grid2{display:grid;grid-template-columns:1fr;gap:1.4rem;margin-top:1.6rem;align-items:start}
 
-/* ═══ 2. ОТКУДА МЫ ═══ */
+/* ═══ 2. КОГДА ЭТО НУЖНО ═══ */
 .origin{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1.6rem}
 .obox{border:1px solid var(--line);background:var(--card);padding:1.15rem}
 .obox .n{font-family:var(--mono);font-size:10px;color:var(--a);letter-spacing:.13em;display:block;margin-bottom:.5rem}
@@ -152,7 +152,7 @@ h1 em{font-style:normal;color:var(--a)}
 .close p{margin:0;font-size:.9rem;color:var(--ink-2);max-width:56ch}
 .close p b{color:var(--ink)}
 
-/* футер: юридическая информация */
+/* футер */
 footer{padding:1.8rem 0 2.2rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:9px;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
 footer .row{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
@@ -186,10 +186,10 @@ footer .row{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
 </head>
 <body id="top">
 
-<!-- Яндекс.Метрика. Чтобы включить: заменить null на номер счётчика (var YM_ID = 12345678;)
-     и YM_COUNTER_ID в noscript-пикселе. Цель для Директа: JavaScript-событие «tg_click». -->
+<!-- Яндекс.Метрика: счётчик 111534524 (finch.neuroproject.tech, аккаунт кабинета Директа).
+     Цель для Директа: JavaScript-событие «tg_click» (id 596227054, «Переход в бота»). -->
 <script>
-var YM_ID = null;
+var YM_ID = 111534524;
 if (YM_ID) {
   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
   m[i].l=1*new Date();
@@ -199,7 +199,7 @@ if (YM_ID) {
   ym(YM_ID, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true});
 }
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/YM_COUNTER_ID" style="position:absolute;left:-9999px" alt=""></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/111534524" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
 <div class="bar">
   <div class="wmwrap">
@@ -250,7 +250,7 @@ if (YM_ID) {
       <div class="obox">
         <span class="n">02</span>
         <h3>«Добровольный взнос» в садике</h3>
-        <p>Объявили сбор «на нужды группы». Финч разберёт, что здесь законно, а что нет, и соберёт <b>заявление заведующей</b> — или обращение в департамент образования.</p>
+        <p>Объявили сбор «на нужды группы». Финч разберёт, что здесь законно, а что нет, и соберёт <b>заявление на имя заведующей</b> — или обращение в департамент образования.</p>
       </div>
       <div class="obox">
         <span class="n">03</span>
@@ -308,7 +308,7 @@ if (YM_ID) {
       <div class="chatwrap">
         <div class="chathd">
           <span>Так выглядит разбор</span>
-          <span class="live"><i></i>вживую</span>
+          <span class="live"><i></i>реальный кейс</span>
         </div>
         <div class="chat" id="chat">
           <div class="msg me" data-d="300">Есть ИП на 800к, на машину разбитую наложили запрет рег. действий. Хотел её продать, чтоб были деньги в долг закинуть. Что можно сделать, чтоб продать машину?</div>
@@ -348,7 +348,7 @@ if (YM_ID) {
 var TG_LINK = 'https://t.me/finch_lab_bot?start=site';
 [].forEach.call(document.querySelectorAll('a[data-tg]'), function(a){
   a.href = TG_LINK;
-  a.addEventListener('click', function(){ // конверсия для Директа; sendBeacon переживает уход со страницы
+  a.addEventListener('click', function(){ // конверсия для Директа: tag.js отправит цель и при уходе со страницы
     if (window.YM_ID && typeof ym === 'function') ym(window.YM_ID, 'reachGoal', 'tg_click');
   });
 });
