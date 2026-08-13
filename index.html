@@ -342,10 +342,30 @@ if (YM_ID) {
 <a class="sticky" data-tg href="https://t.me/finch_lab_bot?start=site">Разобрать мою ситуацию в Telegram</a>
 
 <script>
-// ═══ Точка входа: бот @finch_lab_bot. Параметр start=site помечает переходы с сайта
-// (реклама Директа ведёт на этот же сайт, поэтому здесь всегда site). ═══
-// Тот же адрес продублирован в href каждой кнопки — чтобы работало и без JS.
-var TG_LINK = 'https://t.me/finch_lab_bot?start=site';
+// ═══ Точка входа: бот @finch_lab_bot. Параметр start помечает, откуда пришёл человек:
+// site — обычный переход, direct[_кампания] — переход с рекламы Яндекс.Директа.
+// Директ сам дописывает к ссылке yclid, кампанию берём из utm_campaign, если она размечена.
+// Без этого рекламный трафик в боте неотличим от органики и реклама не измеряется. ═══
+// Адрес продублирован в href каждой кнопки — чтобы работало и без JS (тогда метка site).
+var TG_BOT = 'https://t.me/finch_lab_bot?start=';
+
+function istochnik(){
+  var p = new URLSearchParams(location.search);
+  var reklama = p.has('yclid') || p.get('utm_source') === 'yandex' || p.get('utm_medium') === 'cpc';
+  if (!reklama) return 'site';
+  // payload deep-link: только латиница, цифры, _ и -, не длиннее 64 символов
+  var kamp = (p.get('utm_campaign') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40);
+  return kamp ? 'direct_' + kamp : 'direct';
+}
+
+// метку запоминаем на сессию: человек может уйти вглубь страницы и вернуться уже без параметров
+var metka = istochnik();
+try {
+  if (metka === 'site' && sessionStorage.getItem('finch_src')) metka = sessionStorage.getItem('finch_src');
+  else sessionStorage.setItem('finch_src', metka);
+} catch (e) {} // приватный режим — просто работаем без запоминания
+
+var TG_LINK = TG_BOT + metka;
 [].forEach.call(document.querySelectorAll('a[data-tg]'), function(a){
   a.href = TG_LINK;
   a.addEventListener('click', function(){ // конверсия для Директа: tag.js отправит цель и при уходе со страницы
